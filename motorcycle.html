@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorcycle API </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <style>
+        .bodycolor{
+            /*background-color:purple;*/
+            background-image:url('https://wallpaperaccess.com/full/3435006.jpg');
+            background-attachment:fixed;
+            background-repeat:no-repeat;
+            height: 1920px;
+            width: 1080px;
+            padding: 0;
+            margin: 0;
+        }
+        
+</style>
+</head>
+
+<body>
+    <div class="bodycolor">
+        <div class="card" style="width: 35rem; margin-left: 980px; margin-top: 0px; height: 729px; ">
+            <div class="card-body" style="padding: 10px; padding-top: 30px; padding-left: 19px; ">
+                <h4 style="color: rgb(30, 189, 49); font-family: georgia; font-weight: bold; text-align: center;">WELCOME TO THE WORLD OF MOTORCYCLE </h4><br>
+    
+                <form style="text-align: center;">
+                    <label style="color: rgb(14, 15, 14);font-family: georgia; font-weight: bold;">Name of Motorcycle Brand:</label>
+                    <input class="form-control" type="text" id="make"><br>
+                    
+                    <label style="color: rgb(14, 15, 14);font-family: georgia; font-weight: bold;">Model Name:</label>
+                    <input class="form-control" type="text" id="model"><br>
+                    
+                    <button type="button" class="btn btn-outline-success" style="font-family: georgia; font-weight: bold;" id="submit">submit</button><br><br>
+                </form>
+                        <br><br>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">make : <span id="made" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">model : <span id="mod" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">year : <span id="year" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">type : <span id="type" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">displacement : <span id="displace" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">fuel_system : <span id="fuel" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">fuel_control : <span id="fcontrol" style="color: rgb(30, 189, 49);"></span></p>
+                    <p style="color: rgb(14, 15, 14); font-family: Times New Roman; font-weight: bold;">starter : <span id="start" style="color: rgb(30, 189, 49);"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'b2e7941b3emsh57dfb7047fa7d47p153975jsnca13812ebc43',
+		'X-RapidAPI-Host': 'motorcycles-by-api-ninjas.p.rapidapi.com'
+	}
+}
+    const Motorcycleapp = (make, model) => {
+
+        make.innerHTML = make
+        model.innerHTML = model
+
+        fetch('https://motorcycles-by-api-ninjas.p.rapidapi.com/v1/motorcycles?make='+make+'&model='+model, options)
+            .then(response => response.json())
+            .then(data => {console.log(data)
+            
+
+                made.innerHTML = data[0].make
+                mod.innerHTML = data[0].model
+                year.innerHTML = data[0].year
+                type.innerHTML = data[0].type
+                displace.innerHTML = data[0].displacement
+                fuel.innerHTML = data[0].fuel_system
+                fcontrol.innerHTML = data[0].fuel_control
+                start.innerHTML = data[0].starter
+
+            })}
+        
+        submit.addEventListener("click", (e) => {
+            e.preventDefault()
+            Motorcycleapp(make.value, model.value)
+        })
+
+        Motorcycleapp("kawasaki","ninja")
+
+    </script>
+</body>
+</html>
